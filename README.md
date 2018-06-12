@@ -14,12 +14,12 @@ This guide provides step-by-step instructions for how to set up TensorFlow’s O
 I will also post a YouTube video that walks through this guide step-by-step. Please check back later for a link to the video.
 
 The guide walks through the following steps:
-1. Update the Raspberry Pi
-2. Install TensorFlow
-3. Install OpenCV
-4. Compile and install Protobuf
-5. Set up TensorFlow directory structure and the PYTHONPATH variable
-6. Detect objects!
+1. [Update the Raspberry Pi](https://github.com/EdjeElectronics/TensorFlow-Object-Detection-on-the-Raspberry-Pi#1-update-the-raspberry-pi)
+2. [Install TensorFlow](https://github.com/EdjeElectronics/TensorFlow-Object-Detection-on-the-Raspberry-Pi#2-install-tensorflow)
+3. [Install OpenCV](https://github.com/EdjeElectronics/TensorFlow-Object-Detection-on-the-Raspberry-Pi#3-install-opencv)
+4. [Compile and install Protobuf](https://github.com/EdjeElectronics/TensorFlow-Object-Detection-on-the-Raspberry-Pi#4-compile-and-install-protobuf)
+5. [Set up TensorFlow directory structure and the PYTHONPATH variable](https://github.com/EdjeElectronics/TensorFlow-Object-Detection-on-the-Raspberry-Pi#5-set-up-tensorflow-directory-structure-and-pythonpath-variable)
+6. [Detect objects!](https://github.com/EdjeElectronics/TensorFlow-Object-Detection-on-the-Raspberry-Pi#6-detect-objects)
 
 The repository also includes the Object_detection_picamera.py script, which is a Python script that loads an object detection model in TensorFlow and uses it to detect objects in a Picamera video feed. The guide was written for TensorFlow v1.8.0 on a Raspberry Pi Model 3B running Raspbian Stretch v9. It will likely work for newer versions of TensorFlow.
 
