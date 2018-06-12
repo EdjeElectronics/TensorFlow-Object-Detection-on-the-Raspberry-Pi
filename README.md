@@ -6,7 +6,7 @@ This guide provides step-by-step instructions for how to set up TensorFlow’s O
 * Letting you know when your cat wants to be let inside or outside :smiley_cat:
 * Telling you if there are any parking spaces available in front of your apartment building
 * [Beehive bee counter](http://matpalm.com/blog/counting_bees/)
-* [Counting cards at the blackjack table??](https://hackaday.io/project/27639-rainman-20-blackjack-robot)
+* [Counting cards at the blackjack table?](https://hackaday.io/project/27639-rainman-20-blackjack-robot)
 * And anything else you can think of!
 
 *Picture of kitty cat detector coming soon*
@@ -19,7 +19,7 @@ The guide walks through the following steps:
 3. Install OpenCV
 4. Compile and install Protobuf
 5. Set up TensorFlow directory structure and the PYTHONPATH variable
-6. Detect objects!!
+6. Detect objects!
 
 The repository also includes the Object_detection_picamera.py script, which is a Python script that loads an object detection model in TensorFlow and uses it to detect objects in a Picamera video feed. The guide was written for TensorFlow v1.8.0 on a Raspberry Pi Model 3B running Raspbian Stretch v9. It will likely work for newer versions of TensorFlow.
 
@@ -46,6 +46,7 @@ wget https://github.com/lhelontra/tensorflow-on-arm/releases/download/v1.8.0/ten
 At the time this tutorial was written, the most recent version of TensorFlow was version 1.8.0. If a more recent version is available on the repository, you can download it rather than version 1.8.0.
 
 Alternatively, if the owner of the GitHub repository stops releasing new builds, or if you want some experience compiling Python packages from source code, you can check out my video guide: [How to Install TensorFlow on the Raspberry Pi](https://youtu.be/WqCnW_2XDw8), which shows you how to build and install TensorFlow from source on the Raspberry Pi.
+
 *Picture link to video guide coming soon!*
 
 Now that we’ve got the file, install TensorFlow by issuing:
@@ -136,8 +137,83 @@ That’s it! Now Protobuf is installed on the Pi. Very it’s installed correctl
 protoc
 ```
 *Picture of appropriate response to 'protoc' command coming soon!*
+
 For some reason, the Raspberry Pi needs to be restarted after this process, or TensorFlow will not work. Go ahead and reboot the Pi by issuing:
 ```
 sudo reboot now
 ```
 
+### 5. Set up TensorFlow Directory Structure and PYTHONPATH Variable
+Now that we’ve installed all the packages, we need to set up the TensorFlow directory. Move back to your home directory, then make a directory called “tensorflow1”, and cd into it.
+```
+mkdir tensorflow1
+cd tensorflow1
+```
+Download the tensorflow repository from GitHub and checkout version 1.8.0 (or any other desired version) by issuing:
+```
+git clone --recurse_submodules https://github.com/tensorflow/models.git
+git checkout v1.8.0
+```
+Next, we need to modify the PYTHONPATH environment variable to point at some directories inside the TensorFlow repository we just downloaded. We want PYTHONPATH to be set every time we open a terminal, so we have to modify the .bashrc file. Open it by issuing:
+```
+sudo nano ~/.bashrc
+```
+Move to the end of the file, and on the last line, add:
+```
+export PYTHONPATH=$PYTHONPATH:/home/pi/tensorflow1/models/research:/home/pi/tensorflow1/models/research/slim
+```
+*Picture of modified .bashrc file coming soon!*
+
+Then, save and exit the file. This makes it so the “export PYTHONPATH” command is called every time you open a new terminal, so the PYTHONPATH variable will always be set appropriately.
+
+Close and then re-open the terminal, and issue:
+```
+cd /home/pi/tensorflow1/models/research/object_detection
+```
+Now, we’ll download the SSD_Lite model from the [TensorFlow detection model zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md). The model zoo is Google’s collection of pre-trained object detection models that have various levels of speed and accuracy. The Raspberry Pi has a weak processor, so we need to use a model that takes less processing power. Though the model will run faster, it comes at a tradeoff of having lower accuracy. For this tutorial, we’ll use SSDLite-MobileNet, which is the fastest model available. 
+
+Google is continuously releasing models with improved speed and performance, so check back at the model zoo often to see if there are any better models.
+
+Download the SSDLite-MobileNet model and unpack it by issuing:
+```
+wget http://download.tensorflow.org/models/object_detection/ssdlite_mobilenet_v2_coco_2018_05_09.tar.gz
+tar -xzvf ssdlite_mobilenet_v2_coco_2018_05_09.tar.gz
+```
+Now the model is in the object_detection directory and ready to be used.
+
+### 6. Detect Objects!
+Okay, now everything is set up for performing object detection on the Pi! The Python script in this repository, Object_detection_picamera.py, detects objects in live feeds from a Picamera or USB webcam. Basically, the script sets paths to the model and label map, loads the model into memory, initializes the Picamera, and then begins performing object detection on each video frame from the Picamera. 
+
+If you’re using a Picamera, make sure it is enabled in the Raspberry Pi configuration menu.
+*Picture of picamera enabled coming soon*
+Download the Object_detection_picamera.py file into the object_detection directory by issuing:
+```
+wget (link to the file in this repository, which will be uploaded by 6/12/18)
+```
+Run the script by issuing: 
+```
+python3 Object_detection_picamera.py 
+```
+The script defaults to using an attached Picamera. If you have a USB webcam instead, add --camera=USB to the end of the command:
+```
+python3 Object_detection_picamera.py --camera=USB
+```
+Once the script initializes (which can take up to 30 seconds), you will see a window showing a live view from your camera. Common objects inside the view will be identified and have a rectangle drawn around them. 
+
+*Picture of object detector in action coming soon!*
+
+With the SSDLite model, the Raspberry Pi 3 performs fairly well, achieving a frame rate higher than 1FPS. This is fast enough for most real-time object detection applications.
+
+You can also use a model you trained yourself by adding the frozen inference graph into the object_detection directory and changing the model path in the script. You can test this out using my playing card detector model located at this dropbox link (link will be added by 6/15/18). Once you’ve downloaded and extracted the model, or if you have your own model, place the model folder into the object_detection directory. Place the label_map.pbtxt file into the training directory.
+
+*Picture of directory setup coming soon*
+
+Then, open the Object_detection_picamera.py script in a text editor. Go to the line where MODEL_NAME is set and change the string to match the name of the new model folder. Then, on the line where PATH_TO_LABELS is set, change the name of the labelmap file to match the new label map.
+
+*Picture of modified script coming soon*
+
+Now, when you run the script, it will use your model rather than the SSDLite_MobileNet model. If you’re using my model, it will detect and identify any playing cards dealt in front of the camera.
+
+*Picture of detected playing cards coming soon*
+
+Thanks for following through this guide, I hope you found it useful. Good luck with your object detection applications on the Raspberry Pi!
