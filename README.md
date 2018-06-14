@@ -211,7 +211,7 @@ Once the script initializes (which can take up to 30 seconds), you will see a wi
 
 With the SSDLite model, the Raspberry Pi 3 performs fairly well, achieving a frame rate higher than 1FPS. This is fast enough for most real-time object detection applications.
 
-You can also use a model you trained yourself by adding the frozen inference graph into the object_detection directory and changing the model path in the script. You can test this out using my playing card detector model located at this dropbox link (link will be added by 6/15/18). Once you’ve downloaded and extracted the model, or if you have your own model, place the model folder into the object_detection directory. Place the label_map.pbtxt file into the training directory.
+You can also use a model you trained yourself by adding the frozen inference graph into the object_detection directory and changing the model path in the script. You can test this out using my playing card detector model located at this dropbox link (link will be added by 6/15/18). Once you’ve downloaded and extracted the model, or if you have your own model, place the model folder into the object_detection directory. Place the label_map.pbtxt file into the object_detection/data directory.
 
 *Picture of directory setup coming soon*
 
