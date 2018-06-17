@@ -1,11 +1,5 @@
 # Tutorial to set up TensorFlow Object Detection API on the Raspberry Pi
 
-TO DO before this guide is complete:
-1. Upload Object_detection_picamera.py - DONE!
-2. Add pictures to guide - DONE!
-3. Add link to video version of this guide
-
-These should all be finished by June 18th!
 
 <p align="center">
   <img src="doc/Picamera_livingroom.png">
@@ -15,10 +9,10 @@ These should all be finished by June 18th!
 ## Introduction
 This guide provides step-by-step instructions for how to set up TensorFlow’s Object Detection API on the Raspberry Pi. By following the steps in this guide, you will be able to use your Raspberry Pi to perform object detection on live video feeds from a Picamera or USB webcam. Combine this guide with my <link> tutorial on how to train your own neural network to identify specific objects</link>, and you use your Pi for unique detection applications such as:
 
-* Letting you know when your cat wants to be let inside or outside :smiley_cat:
+* Detecting if bunnies are in your garden eating your precious vegetables
 * Telling you if there are any parking spaces available in front of your apartment building
 * [Beehive bee counter](http://matpalm.com/blog/counting_bees/)
-* [Counting cards at the blackjack table?](https://hackaday.io/project/27639-rainman-20-blackjack-robot)
+* [Counting cards at the blackjack table](https://hackaday.io/project/27639-rainman-20-blackjack-robot)
 * And anything else you can think of!
 
 I will also post a YouTube video that walks through this guide step-by-step. Please check back later for a link to the video.
@@ -206,7 +200,7 @@ If you’re using a Picamera, make sure it is enabled in the Raspberry Pi config
 
 Download the Object_detection_picamera.py file into the object_detection directory by issuing:
 ```
-wget (link to the file in this repository, which will be uploaded by 6/12/18)
+wget https://raw.githubusercontent.com/EdjeElectronics/TensorFlow-Object-Detection-on-the-Raspberry-Pi/master/Object_detection_picamera.py
 ```
 Run the script by issuing: 
 ```
