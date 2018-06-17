@@ -2,10 +2,15 @@
 
 TO DO before this guide is complete:
 1. Upload Object_detection_picamera.py - DONE!
-2. Add pictures to guide
+2. Add pictures to guide - DONE!
 3. Add link to video version of this guide
 
 These should all be finished by June 18th!
+
+<p align="center">
+  <img src="doc/Picamera_livingroom.png">
+</p>
+
 
 ## Introduction
 This guide provides step-by-step instructions for how to set up TensorFlow’s Object Detection API on the Raspberry Pi. By following the steps in this guide, you will be able to use your Raspberry Pi to perform object detection on live video feeds from a Picamera or USB webcam. Combine this guide with my <link> tutorial on how to train your own neural network to identify specific objects</link>, and you use your Pi for unique detection applications such as:
@@ -55,7 +60,7 @@ At the time this tutorial was written, the most recent version of TensorFlow was
 
 Alternatively, if the owner of the GitHub repository stops releasing new builds, or if you want some experience compiling Python packages from source code, you can check out my video guide: [How to Install TensorFlow on the Raspberry Pi](https://youtu.be/WqCnW_2XDw8), which shows you how to build and install TensorFlow from source on the Raspberry Pi.
 
-*Picture link to video guide coming soon!*
+[![Link to TensorFlow installation video!](https://raw.githubusercontent.com/EdjeElectronics/TensorFlow-Object-Detection-on-the-Raspberry-Pi/master/doc/Install_TF_RPi.jpg)](https://www.youtube.com/watch?v=WqCnW_2XDw8)
 
 Now that we’ve got the file, install TensorFlow by issuing:
 ```
@@ -140,12 +145,10 @@ Finally, issue:
 ```
 sudo ldconfig
 ```
-That’s it! Now Protobuf is installed on the Pi. Very it’s installed correctly by issuing the command below and making sure there are no errors reported.
+That’s it! Now Protobuf is installed on the Pi. Very it’s installed correctly by issuing the command below and making sure it puts out the default help text.
 ```
 protoc
 ```
-*Picture of appropriate response to 'protoc' command coming soon!*
-
 For some reason, the Raspberry Pi needs to be restarted after this process, or TensorFlow will not work. Go ahead and reboot the Pi by issuing:
 ```
 sudo reboot now
@@ -170,7 +173,10 @@ Move to the end of the file, and on the last line, add:
 ```
 export PYTHONPATH=$PYTHONPATH:/home/pi/tensorflow1/models/research:/home/pi/tensorflow1/models/research/slim
 ```
-*Picture of modified .bashrc file coming soon!*
+
+<p align="center">
+  <img src="doc/bashrc.png">
+</p>
 
 Then, save and exit the file. This makes it so the “export PYTHONPATH” command is called every time you open a new terminal, so the PYTHONPATH variable will always be set appropriately.
 
@@ -193,7 +199,11 @@ Now the model is in the object_detection directory and ready to be used.
 Okay, now everything is set up for performing object detection on the Pi! The Python script in this repository, Object_detection_picamera.py, detects objects in live feeds from a Picamera or USB webcam. Basically, the script sets paths to the model and label map, loads the model into memory, initializes the Picamera, and then begins performing object detection on each video frame from the Picamera. 
 
 If you’re using a Picamera, make sure it is enabled in the Raspberry Pi configuration menu.
-*Picture of picamera enabled coming soon*
+
+<p align="center">
+  <img src="doc/camera_enabled.png">
+</p>
+
 Download the Object_detection_picamera.py file into the object_detection directory by issuing:
 ```
 wget (link to the file in this repository, which will be uploaded by 6/12/18)
@@ -208,20 +218,28 @@ python3 Object_detection_picamera.py --camera=USB
 ```
 Once the script initializes (which can take up to 30 seconds), you will see a window showing a live view from your camera. Common objects inside the view will be identified and have a rectangle drawn around them. 
 
-*Picture of object detector in action coming soon!*
+<p align="center">
+  <img src="doc/kitchen.png">
+</p>
 
 With the SSDLite model, the Raspberry Pi 3 performs fairly well, achieving a frame rate higher than 1FPS. This is fast enough for most real-time object detection applications.
 
-You can also use a model you trained yourself by adding the frozen inference graph into the object_detection directory and changing the model path in the script. You can test this out using my playing card detector model located at this dropbox link (link will be added by 6/15/18). Once you’ve downloaded and extracted the model, or if you have your own model, place the model folder into the object_detection directory. Place the label_map.pbtxt file into the object_detection/data directory.
+You can also use a model you trained yourself by adding the frozen inference graph into the object_detection directory and changing the model path in the script. You can test this out using my playing card detector model (transferred from ssd_mobilenet_v2 model and trained on TensorFlow v1.5) located at [this dropbox link](https://www.dropbox.com/s/ji99wwmque3diol/card_model.zip?dl=0). Once you’ve downloaded and extracted the model, or if you have your own model, place the model folder into the object_detection directory. Place the label_map.pbtxt file into the object_detection/data directory.
 
-*Picture of directory setup coming soon*
+<p align="center">
+  <img src="doc/directory.png">
+</p>
 
 Then, open the Object_detection_picamera.py script in a text editor. Go to the line where MODEL_NAME is set and change the string to match the name of the new model folder. Then, on the line where PATH_TO_LABELS is set, change the name of the labelmap file to match the new label map. Change the NUM_CLASSES variable to the number of classes your model can identify.
 
-*Picture of modified script coming soon*
+<p align="center">
+  <img src="doc/edited_script.png">
+</p>
 
 Now, when you run the script, it will use your model rather than the SSDLite_MobileNet model. If you’re using my model, it will detect and identify any playing cards dealt in front of the camera.
 
-*Picture of detected playing cards coming soon*
+<p align="center">
+  <img src="doc/cards.png">
+</p>
 
 Thanks for following through this guide, I hope you found it useful. Good luck with your object detection applications on the Raspberry Pi!
