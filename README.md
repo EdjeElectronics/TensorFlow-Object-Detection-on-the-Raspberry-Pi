@@ -16,8 +16,6 @@ This guide provides step-by-step instructions for how to set up TensorFlow’s O
 * [Counting cards at the blackjack table?](https://hackaday.io/project/27639-rainman-20-blackjack-robot)
 * And anything else you can think of!
 
-*Picture of kitty cat detector coming soon*
-
 I will also post a YouTube video that walks through this guide step-by-step. Please check back later for a link to the video.
 
 The guide walks through the following steps:
@@ -38,7 +36,10 @@ sudo apt-get update
 sudo apt-get dist-upgrade
 ```
 Depending on how long it’s been since you’ve updated your Pi, the upgrade could take anywhere between a minute and an hour.
-*Picture coming soon!*
+
+<p align="center">
+  <img src="doc/update.png">
+</p>
 
 ### 2. Install TensorFlow
 Next, we’ll install TensorFlow. In the /home/pi directory, create a folder called ‘tf’, which will be used to hold all the installation files for TensorFlow and Protobuf, and cd into it:
