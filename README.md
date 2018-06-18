@@ -154,10 +154,9 @@ Now that we’ve installed all the packages, we need to set up the TensorFlow di
 mkdir tensorflow1
 cd tensorflow1
 ```
-Download the tensorflow repository from GitHub and checkout version 1.8.0 (or any other desired version) by issuing:
+Download the tensorflow repository from GitHub by issuing:
 ```
 git clone --recurse-submodules https://github.com/tensorflow/models.git
-git checkout v1.8.0
 ```
 Next, we need to modify the PYTHONPATH environment variable to point at some directories inside the TensorFlow repository we just downloaded. We want PYTHONPATH to be set every time we open a terminal, so we have to modify the .bashrc file. Open it by issuing:
 ```
@@ -172,9 +171,14 @@ export PYTHONPATH=$PYTHONPATH:/home/pi/tensorflow1/models/research:/home/pi/tens
   <img src="doc/bashrc.png">
 </p>
 
-Then, save and exit the file. This makes it so the “export PYTHONPATH” command is called every time you open a new terminal, so the PYTHONPATH variable will always be set appropriately.
+Then, save and exit the file. This makes it so the “export PYTHONPATH” command is called every time you open a new terminal, so the PYTHONPATH variable will always be set appropriately. Close and then re-open the terminal.
 
-Close and then re-open the terminal, and issue:
+Now, we need to use Protoc to compile the Protocol Buffer (.proto) files used by the Object Detection API. The .proto files are located in /research/object_detection/protos, but we need to execute the command from the /research directory. Issue:
+```
+cd /home/pi/tensorflow1/models/research
+protoc object_detection/protos/*.proto --python_out=.
+```
+This command converts all the "name".proto files to "name_pb2".py files. Next, move into the object_detection directory:
 ```
 cd /home/pi/tensorflow1/models/research/object_detection
 ```
