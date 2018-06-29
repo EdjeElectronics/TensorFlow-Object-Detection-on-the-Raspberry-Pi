@@ -58,7 +58,7 @@ Alternatively, if the owner of the GitHub repository stops releasing new builds,
 
 Now that we’ve got the file, install TensorFlow by issuing:
 ```
-sudo pip3 install /home/pi/tensorflow-1.8.0-cp35-none-linux_armv7l.whl
+sudo pip3 install /home/pi/tf/tensorflow-1.8.0-cp35-none-linux_armv7l.whl
 ```
 TensorFlow also needs the LibAtlas package. Install it by issuing:
 ```
@@ -67,7 +67,7 @@ sudo apt-get install libatlas-base-dev
 While we’re at it, let’s install other dependencies that will be used by the TensorFlow Object Detection API. These are listed on the [installation instructions](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/installation.md) in TensorFlow’s Object Detection GitHub repository. Issue:
 ```
 sudo pip3 install pillow lxml jupyter matplotlib cython
-sudo apt-get install python_tk
+sudo apt-get install python-tk
 ```
 Alright, that’s everything we need for TensorFlow! Next up: OpenCV.
 
