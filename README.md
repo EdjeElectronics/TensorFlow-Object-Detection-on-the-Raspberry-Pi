@@ -60,7 +60,7 @@ Now that we’ve got the file, install TensorFlow by issuing:
 ```
 sudo pip3 install /home/pi/tf/tensorflow-1.8.0-cp35-none-linux_armv7l.whl
 ```
-TensorFlow also needs the LibAtlas package. Install it by issuing:
+TensorFlow also needs the LibAtlas package. Install it by issuing (if this command doesn't work, issue "sudo apt-get update" and then try again):
 ```
 sudo apt-get install libatlas-base-dev
 ```
