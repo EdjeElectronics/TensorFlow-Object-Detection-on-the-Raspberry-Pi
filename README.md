@@ -101,7 +101,7 @@ wget https://github.com/google/protobuf/releases/download/v3.5.1/protobuf-all-3.
 If a more recent version of protobuf is available, download that instead. Unpack the file and cd into the folder:
 ```
 tar -zxvf protobuf-all-3.5.1.tar.gz
-cd protobuf-all-3.5.1
+cd protobuf-3.5.1
 ```
 Configure the build by issuing the following command (it takes about 2 minutes):
 ```
