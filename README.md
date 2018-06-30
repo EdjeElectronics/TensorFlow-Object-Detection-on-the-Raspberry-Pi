@@ -139,7 +139,7 @@ Finally, issue:
 ```
 sudo ldconfig
 ```
-That’s it! Now Protobuf is installed on the Pi. Very it’s installed correctly by issuing the command below and making sure it puts out the default help text.
+That’s it! Now Protobuf is installed on the Pi. Verify it’s installed correctly by issuing the command below and making sure it puts out the default help text.
 ```
 protoc
 ```
