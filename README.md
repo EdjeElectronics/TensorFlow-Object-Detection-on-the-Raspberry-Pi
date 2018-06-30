@@ -77,7 +77,7 @@ TensorFlow’s object detection examples typically use matplotlib to display ima
 To get OpenCV working on the Raspberry Pi, there’s quite a few dependencies that need to be installed through apt-get. If any of the following commands don’t work, issue “sudo apt-get update” and then try again. Issue:
 ```
 sudo apt-get install libjpeg-dev libtiff5-dev libjasper-dev libpng12-dev
-sudo apt-get install libavcodev-dev libavformat-dev libswscale-dev libv4l-dev
+sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
 sudo apt-get install libxvidcore-dev libx264-dev
 sudo apt-get install qt4-dev-tools
 ```
