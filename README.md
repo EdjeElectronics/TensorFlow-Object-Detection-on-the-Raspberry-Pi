@@ -210,9 +210,9 @@ Run the script by issuing:
 ```
 python3 Object_detection_picamera.py 
 ```
-The script defaults to using an attached Picamera. If you have a USB webcam instead, add --camera=USB to the end of the command:
+The script defaults to using an attached Picamera. If you have a USB webcam instead, add --usbcam to the end of the command:
 ```
-python3 Object_detection_picamera.py --camera=USB
+python3 Object_detection_picamera.py --usbcam
 ```
 Once the script initializes (which can take up to 30 seconds), you will see a window showing a live view from your camera. Common objects inside the view will be identified and have a rectangle drawn around them. 
 
