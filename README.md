@@ -15,7 +15,9 @@ This guide provides step-by-step instructions for how to set up TensorFlow’s O
 * [Counting cards at the blackjack table](https://hackaday.io/project/27639-rainman-20-blackjack-robot)
 * And anything else you can think of!
 
-I will also post a YouTube video that walks through this guide step-by-step. Please check back later for a link to the video.
+Here's a YouTube video I made that walks through this guide!
+
+[![Link to my YouTube video!](https://raw.githubusercontent.com/EdjeElectronics/TensorFlow-Object-Detection-on-the-Raspberry-Pi/master/doc/YouTube_video.png)](https://www.youtube.com/watch?v=npZ-8Nj1YwY)
 
 The guide walks through the following steps:
 1. [Update the Raspberry Pi](https://github.com/EdjeElectronics/TensorFlow-Object-Detection-on-the-Raspberry-Pi#1-update-the-raspberry-pi)
