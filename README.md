@@ -5,7 +5,7 @@
   <img src="doc/Picamera_livingroom.png">
 </p>
 
-*Update 12/10/18:* Added Pet_detector.py, a script that sends your phone a text when it detects that when your cat or dog wants to be let outside or inside! More info is available at [the bottom of this readme](https://github.com/EdjeElectronics/TensorFlow-Object-Detection-on-the-Raspberry-Pi#bonus-pet-detector).
+*Update 12/10/18:* Added Pet_detector.py, a script that sends your phone a text when it detects that your cat or dog wants to be let outside or inside! More info is available at [the bottom of this readme](https://github.com/EdjeElectronics/TensorFlow-Object-Detection-on-the-Raspberry-Pi#bonus-pet-detector).
 
 ## Introduction
 This guide provides step-by-step instructions for how to set up TensorFlow’s Object Detection API on the Raspberry Pi. By following the steps in this guide, you will be able to use your Raspberry Pi to perform object detection on live video feeds from a Picamera or USB webcam. Combine this guide with my <link> tutorial on how to train your own neural network to identify specific objects</link>, and you use your Pi for unique detection applications such as:
