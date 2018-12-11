@@ -5,6 +5,7 @@
   <img src="doc/Picamera_livingroom.png">
 </p>
 
+Update 12/10/18: Added Pet_detector.py, a script that sends your phone a text when it detects that when your cat or dog wants to be let outside or inside! More info is available at the bottom of this readme.
 
 ## Introduction
 This guide provides step-by-step instructions for how to set up TensorFlow’s Object Detection API on the Raspberry Pi. By following the steps in this guide, you will be able to use your Raspberry Pi to perform object detection on live video feeds from a Picamera or USB webcam. Combine this guide with my <link> tutorial on how to train your own neural network to identify specific objects</link>, and you use your Pi for unique detection applications such as:
@@ -243,3 +244,23 @@ Now, when you run the script, it will use your model rather than the SSDLite_Mob
 </p>
 
 Thanks for following through this guide, I hope you found it useful. Good luck with your object detection applications on the Raspberry Pi!
+
+## Bonus: Pet Detector!
+### Description
+The Pet_detector.py script is an example application of using object detection on the API to alert users when a certain object is detected. I have two indoor-outdoor pets at my parents' home: a cat and a dog. They frequently stand at the door and wait patiently to be let inside or outside. This pet detector uses the TensorFlow MobileNet-SSD model to detect when they are near the door. It defines two regions in the image, an "inside" region and an "outside" region. If the pet is detected in either region for at least 10 consecutive frames, the script uses Twilio to send my phone a text message.
+
+I'm working on a video about the pet detector, and will post it here when the video is finished!
+
+### Usage
+Using the Pet_detector.py program requires having a Twilio account set up [(see tutorial here)](https://www.twilio.com/docs/sms/quickstart/python). It also uses four environment variables that have to be set before running the program: TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, MY_DIGITS, and TWILIO_DIGITS. These can be set using the "export" command, as shown below. More information on setting environment variables for Twilio is given [here](https://www.twilio.com/blog/2017/01/how-to-set-environment-variables.html).
+```
+export TWILIO_ACCOUNT_SID=[sid_value]
+export TWILIO_AUTH_TOKEN=[auth_token]
+export MY_DIGITS=[your cell phone number]
+export TWILIO_DIGITS=[phone number of the Twilio account]
+```
+The sid_value, auth_token, and phone number of the Twilio account values are all provided when a Twilio account is set up.
+
+If you don't want to bother with setting up Twilio so the pet detector can send you texts, you can just comment out the lines in the code that use the Twilio library. The detector will still display a message on the screen when your pet wants inside or outside.
+
+Also, you can move the locations of the "inside" and "outside" boxes by adjusting the TL_inside, BR_inside, TL_outside, and BR_outside variables.
