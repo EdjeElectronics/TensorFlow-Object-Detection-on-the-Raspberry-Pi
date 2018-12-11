@@ -257,6 +257,11 @@ The Pet_detector.py script is an example application of using object detection o
 I'm working on a video about the pet detector, and will post it here when the video is finished!
 
 ### Usage
+Run the pet detector by downloading Pet_detector.py to your /object_detection directory and issuing:
+```
+python3 Pet_detector.py
+```
+
 Using the Pet_detector.py program requires having a Twilio account set up [(see tutorial here)](https://www.twilio.com/docs/sms/quickstart/python). It also uses four environment variables that have to be set before running the program: TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, MY_DIGITS, and TWILIO_DIGITS. These can be set using the "export" command, as shown below. More information on setting environment variables for Twilio is given [here](https://www.twilio.com/blog/2017/01/how-to-set-environment-variables.html).
 ```
 export TWILIO_ACCOUNT_SID=[sid_value]
