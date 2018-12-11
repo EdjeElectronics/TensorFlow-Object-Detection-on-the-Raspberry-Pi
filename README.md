@@ -246,9 +246,11 @@ Now, when you run the script, it will use your model rather than the SSDLite_Mob
 Thanks for following through this guide, I hope you found it useful. Good luck with your object detection applications on the Raspberry Pi!
 
 ## Bonus: Pet Detector!
+
 <p align="center">
   <img src="doc/pet_detector_demo.png">
 </p>
+
 ### Description
 The Pet_detector.py script is an example application of using object detection on the API to alert users when a certain object is detected. I have two indoor-outdoor pets at my parents' home: a cat and a dog. They frequently stand at the door and wait patiently to be let inside or outside. This pet detector uses the TensorFlow MobileNet-SSD model to detect when they are near the door. It defines two regions in the image, an "inside" region and an "outside" region. If the pet is detected in either region for at least 10 consecutive frames, the script uses Twilio to send my phone a text message.
 
