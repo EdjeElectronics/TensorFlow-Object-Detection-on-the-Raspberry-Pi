@@ -27,6 +27,7 @@ The guide walks through the following steps:
 4. [Compile and install Protobuf](https://github.com/EdjeElectronics/TensorFlow-Object-Detection-on-the-Raspberry-Pi#4-compile-and-install-protobuf)
 5. [Set up TensorFlow directory structure and the PYTHONPATH variable](https://github.com/EdjeElectronics/TensorFlow-Object-Detection-on-the-Raspberry-Pi#5-set-up-tensorflow-directory-structure-and-pythonpath-variable)
 6. [Detect objects!](https://github.com/EdjeElectronics/TensorFlow-Object-Detection-on-the-Raspberry-Pi#6-detect-objects)
+7. [Bonus: Pet detector!](https://github.com/EdjeElectronics/TensorFlow-Object-Detection-on-the-Raspberry-Pi#bonus-pet-detector)
 
 The repository also includes the Object_detection_picamera.py script, which is a Python script that loads an object detection model in TensorFlow and uses it to detect objects in a Picamera video feed. The guide was written for TensorFlow v1.8.0 on a Raspberry Pi Model 3B running Raspbian Stretch v9. It will likely work for newer versions of TensorFlow.
 
@@ -239,7 +240,7 @@ Then, open the Object_detection_picamera.py script in a text editor. Go to the l
 
 Now, when you run the script, it will use your model rather than the SSDLite_MobileNet model. If you’re using my model, it will detect and identify any playing cards dealt in front of the camera.
 
-**Note: If you plan to run this on the Pi for extended periods of time (greater than 5 minutes), make sure to have a heatsink installed on the Pi's main CPU! All the processing causes the CPU to run hot. Without a heatsink, it will shut down due to high temperature.
+**Note: If you plan to run this on the Pi for extended periods of time (greater than 5 minutes), make sure to have a heatsink installed on the Pi's main CPU! All the processing causes the CPU to run hot. Without a heatsink, it will shut down due to high temperature.**
 
 <p align="center">
   <img src="doc/cards.png">
