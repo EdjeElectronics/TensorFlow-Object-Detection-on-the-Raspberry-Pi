@@ -133,7 +133,7 @@ if camera_type == 'picamera':
         
         # Acquire frame and expand frame dimensions to have shape: [1, None, None, 3]
         # i.e. a single-column array, where each item in the column has the pixel RGB value
-        frame = frame1.array
+        frame = np.copy(frame1.array)
         frame.setflags(write=1)
         frame_expanded = np.expand_dims(frame, axis=0)
 
