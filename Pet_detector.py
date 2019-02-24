@@ -180,7 +180,7 @@ def pet_detector(frame):
     
     # Check the class of the top detected object by looking at classes[0][0].
     # If the top detected object is a cat (17) or a dog (18) (or a teddy bear (88) for test purposes),
-    # find it's center coordinates by looking at the boxes[0][0] variable.
+    # find its center coordinates by looking at the boxes[0][0] variable.
     # boxes[0][0] variable holds coordinates of detected objects as (ymin, xmin, ymax, xmax)
     if (((int(classes[0][0]) == 17) or (int(classes[0][0] == 18) or (int(classes[0][0]) == 88))) and (pause == 0)):
         x = int(((boxes[0][0][1]+boxes[0][0][3])/2)*IM_WIDTH)
