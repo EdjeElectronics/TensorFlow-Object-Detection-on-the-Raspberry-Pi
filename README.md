@@ -83,7 +83,7 @@ To get OpenCV working on the Raspberry Pi, there’s quite a few dependencies th
 sudo apt-get install libjpeg-dev libtiff5-dev libjasper-dev libpng12-dev
 sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
 sudo apt-get install libxvidcore-dev libx264-dev
-sudo apt-get install qt4-dev-tools
+sudo apt-get install qt4-dev-tools libatlas-base-dev
 ```
 Now that we’ve got all those installed, we can install OpenCV. Issue:
 ```
