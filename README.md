@@ -83,11 +83,11 @@ sudo pip3 install opencv-python
 Alright, now OpenCV is installed!
 
 ### 4. Compile and Install Protobuf
-The TensorFlow object detection API uses Protobuf, a package that implements Google’s Protocol Buffer data format.  You used to need to compile this which would take a while, now its an easy install!
+The TensorFlow object detection API uses Protobuf, a package that implements Google’s Protocol Buffer data format. You used to need to compile this from source, but now it's an easy install! I moved the old instructions for compiling and installing it from source to the appendix of this guide.
 
 ```sudo apt-get install protobuf-compiler```
 
-Run `protoc --version` once that's done to verify it is installed, we got a response of `libprotoc 3.6.1`
+Run `protoc --version` once that's done to verify it is installed. You should get a response of `libprotoc 3.6.1` or similar.
 
 ### 5. Set up TensorFlow Directory Structure and PYTHONPATH Variable
 Now that we’ve installed all the packages, we need to set up the TensorFlow directory. Move back to your home directory, then make a directory called “tensorflow1”, and cd into it.
@@ -251,3 +251,68 @@ sudo pip3 install pillow lxml jupyter matplotlib cython
 sudo apt-get install python-tk
 ```
 TensorFlow is now installed and ready to go!
+
+### Old instructions for compiling and installing Protobuf from source
+These are the old instructions from Step 4 showing how to compile and install Protobuf from source. These were replaced in the 10/13/19 update of this guide.
+
+The TensorFlow object detection API uses Protobuf, a package that implements Google’s Protocol Buffer data format. Unfortunately, there’s currently no easy way to install Protobuf on the Raspberry Pi. We have to compile it from source ourselves and then install it. Fortunately, a [guide](http://osdevlab.blogspot.com/2016/03/how-to-install-google-protocol-buffers.html) has already been written on how to compile and install Protobuf on the Pi. Thanks OSDevLab for writing the guide!
+
+First, get the packages needed to compile Protobuf from source. Issue:
+```
+sudo apt-get install autoconf automake libtool curl
+```
+Then download the protobuf release from its GitHub repository by issuing:
+```
+wget https://github.com/google/protobuf/releases/download/v3.5.1/protobuf-all-3.5.1.tar.gz
+```
+If a more recent version of protobuf is available, download that instead. Unpack the file and cd into the folder:
+```
+tar -zxvf protobuf-all-3.5.1.tar.gz
+cd protobuf-3.5.1
+```
+Configure the build by issuing the following command (it takes about 2 minutes):
+```
+./configure
+```
+Build the package by issuing:
+```
+make
+```
+The build process took 61 minutes on my Raspberry Pi. When it’s finished, issue:
+```
+make check 
+```
+This process takes even longer, clocking in at 107 minutes on my Pi. According to other guides I’ve seen, this command may exit out with errors, but Protobuf will still work. If you see errors, you can ignore them for now. Now that it’s built, install it by issuing:
+```
+sudo make install
+```
+Then move into the python directory and export the library path:
+```
+cd python
+export LD_LIBRARY_PATH=../src/.libs
+```
+Next, issue:
+```
+python3 setup.py build --cpp_implementation 
+python3 setup.py test --cpp_implementation
+sudo python3 setup.py install --cpp_implementation
+```
+Then issue the following path commands:
+```
+export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=cpp
+export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION_VERSION=3
+```
+Finally, issue:
+```
+sudo ldconfig
+```
+That’s it! Now Protobuf is installed on the Pi. Verify it’s installed correctly by issuing the command below and making sure it puts out the default help text.
+```
+protoc
+```
+For some reason, the Raspberry Pi needs to be restarted after this process, or TensorFlow will not work. Go ahead and reboot the Pi by issuing:
+```
+sudo reboot now
+```
+
+Protobuf should now be installed!
