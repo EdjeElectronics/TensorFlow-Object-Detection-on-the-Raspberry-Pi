@@ -78,7 +78,7 @@ sudo apt-get install qt4-dev-tools libatlas-base-dev
 ```
 Now that we’ve got all those installed, we can install OpenCV. Issue:
 ```
-pip3 install opencv-python
+sudo pip3 install opencv-python
 ```
 Alright, now OpenCV is installed!
 
