@@ -5,7 +5,9 @@
   <img src="doc/Picamera_livingroom.png">
 </p>
 
-*Update 12/10/18:* Added Pet_detector.py, a script that sends your phone a text when it detects that your cat or dog wants to be let outside or inside! More info is available at [the bottom of this readme](https://github.com/EdjeElectronics/TensorFlow-Object-Detection-on-the-Raspberry-Pi#bonus-pet-detector).
+*Update 10/13/19:* Setting up the TensorFlow Object Detection API on the Pi is much easier now! Two major updates: 1) TensorFlow can be installed simply using "pip3 install tensorflow". 2) The protobuf compiler (protoc) can be installed using "sudo apt-get protobuf-compiler. I have updated Step 3 and Step 4 to reflect these changes.
+
+Bonus: I made a Pet Detector program (Pet_detector.py) that sends me a text when it detects when my cat wants to be let outside! It runs on the Raspberry Pi and uses the TensorFlow Object Detection API. You can use the code as an example for your own object detection applications. More info is available at [the bottom of this readme](https://github.com/EdjeElectronics/TensorFlow-Object-Detection-on-the-Raspberry-Pi#bonus-pet-detector).
 
 ## Introduction
 This guide provides step-by-step instructions for how to set up TensorFlow’s Object Detection API on the Raspberry Pi. By following the steps in this guide, you will be able to use your Raspberry Pi to perform object detection on live video feeds from a Picamera or USB webcam. Combine this guide with my <link> tutorial on how to train your own neural network to identify specific objects</link>, and you use your Pi for unique detection applications such as:
@@ -45,26 +47,15 @@ Depending on how long it’s been since you’ve updated your Pi, the upgrade co
 </p>
 
 ### 2. Install TensorFlow
-Next, we’ll install TensorFlow. In the /home/pi directory, create a folder called ‘tf’, which will be used to hold all the installation files for TensorFlow and Protobuf, and cd into it:
-```
-mkdir tf
-cd tf
-```
-A pre-built, Rapsberry Pi-compatible wheel file for installing the latest version of TensorFlow is available in the [“TensorFlow for ARM” GitHub repository](https://github.com/lhelontra/tensorflow-on-arm/releases). GitHub user lhelontra updates the repository with pre-compiled installation packages each time a new TensorFlow is released. Thanks lhelontra!  Download the wheel file by issuing:
-```
-wget https://github.com/lhelontra/tensorflow-on-arm/releases/download/v1.8.0/tensorflow-1.8.0-cp35-none-linux_armv7l.whl
-```
-At the time this tutorial was written, the most recent version of TensorFlow was version 1.8.0. If a more recent version is available on the repository, you can download it rather than version 1.8.0.
+*Update 10/13/19: Changed instructions to just use "pip3 install tensorflow" rather than getting it from lhelontra's repository. The old instructions have been moved to this guide's appendix.*
 
-Alternatively, if the owner of the GitHub repository stops releasing new builds, or if you want some experience compiling Python packages from source code, you can check out my video guide: [How to Install TensorFlow on the Raspberry Pi](https://youtu.be/WqCnW_2XDw8), which shows you how to build and install TensorFlow from source on the Raspberry Pi.
+Next, we’ll install TensorFlow. The download is rather large (over 100MB), so it may take a while. Issue the following command:
 
-[![Link to TensorFlow installation video!](https://raw.githubusercontent.com/EdjeElectronics/TensorFlow-Object-Detection-on-the-Raspberry-Pi/master/doc/Install_TF_RPi.jpg)](https://www.youtube.com/watch?v=WqCnW_2XDw8)
+```
+pip3 install tensorflow
+```
 
-Now that we’ve got the file, install TensorFlow by issuing:
-```
-sudo pip3 install /home/pi/tf/tensorflow-1.8.0-cp35-none-linux_armv7l.whl
-```
-TensorFlow also needs the LibAtlas package. Install it by issuing (if this command doesn't work, issue "sudo apt-get update" and then try again):
+TensorFlow also needs the LibAtlas package. Install it by issuing the following command. (If this command doesn't work, issue "sudo apt-get update" and then try again).
 ```
 sudo apt-get install libatlas-base-dev
 ```
@@ -279,3 +270,38 @@ The sid_value, auth_token, and phone number of the Twilio account values are all
 If you don't want to bother with setting up Twilio so the pet detector can send you texts, you can just comment out the lines in the code that use the Twilio library. The detector will still display a message on the screen when your pet wants inside or outside.
 
 Also, you can move the locations of the "inside" and "outside" boxes by adjusting the TL_inside, BR_inside, TL_outside, and BR_outside variables.
+
+## Appendix
+
+### Old instructions for installing TensorFlow
+These instructions show how to install TensorFlow using lhelontra's repository. They were replaced in my 10/13/19 update of this guide. I am keeping them here, because these are the instructions used in my [video](https://www.youtube.com/watch?v=npZ-8Nj1YwY).
+
+In the /home/pi directory, create a folder called ‘tf’, which will be used to hold all the installation files for TensorFlow and Protobuf, and cd into it:
+```
+mkdir tf
+cd tf
+```
+A pre-built, Rapsberry Pi-compatible wheel file for installing the latest version of TensorFlow is available in the [“TensorFlow for ARM” GitHub repository](https://github.com/lhelontra/tensorflow-on-arm/releases). GitHub user lhelontra updates the repository with pre-compiled installation packages each time a new TensorFlow is released. Thanks lhelontra!  Download the wheel file by issuing:
+```
+wget https://github.com/lhelontra/tensorflow-on-arm/releases/download/v1.8.0/tensorflow-1.8.0-cp35-none-linux_armv7l.whl
+```
+At the time this tutorial was written, the most recent version of TensorFlow was version 1.8.0. If a more recent version is available on the repository, you can download it rather than version 1.8.0.
+
+Alternatively, if the owner of the GitHub repository stops releasing new builds, or if you want some experience compiling Python packages from source code, you can check out my video guide: [How to Install TensorFlow from Source on the Raspberry Pi](https://youtu.be/WqCnW_2XDw8), which shows you how to build and install TensorFlow from source on the Raspberry Pi.
+
+[![Link to TensorFlow installation video!](https://raw.githubusercontent.com/EdjeElectronics/TensorFlow-Object-Detection-on-the-Raspberry-Pi/master/doc/Install_TF_RPi.jpg)](https://www.youtube.com/watch?v=WqCnW_2XDw8)
+
+Now that we’ve got the file, install TensorFlow by issuing:
+```
+sudo pip3 install /home/pi/tf/tensorflow-1.8.0-cp35-none-linux_armv7l.whl
+```
+TensorFlow also needs the LibAtlas package. Install it by issuing (if this command doesn't work, issue "sudo apt-get update" and then try again):
+```
+sudo apt-get install libatlas-base-dev
+```
+While we’re at it, let’s install other dependencies that will be used by the TensorFlow Object Detection API. These are listed on the [installation instructions](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/installation.md) in TensorFlow’s Object Detection GitHub repository. Issue:
+```
+sudo pip3 install pillow lxml jupyter matplotlib cython
+sudo apt-get install python-tk
+```
+TensorFlow is now installed and ready to go!
