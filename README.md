@@ -97,7 +97,7 @@ cd tensorflow1
 ```
 Download the tensorflow repository from GitHub by issuing:
 ```
-git clone --recurse-submodules https://github.com/tensorflow/models.git
+git clone --depth 1 https://github.com/tensorflow/models.git
 ```
 Next, we need to modify the PYTHONPATH environment variable to point at some directories inside the TensorFlow repository we just downloaded. We want PYTHONPATH to be set every time we open a terminal, so we have to modify the .bashrc file. Open it by issuing:
 ```
